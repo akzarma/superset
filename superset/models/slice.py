@@ -104,7 +104,8 @@ class Slice(  # pylint: disable=too-many-public-methods
         "Tag",
         secondary="tagged_object",
         overlaps="objects,tag,tags",
-        primaryjoin="and_(Slice.id == TaggedObject.object_id)",
+        primaryjoin="and_(SqlaTable.id == TaggedObject.object_id, "
+        "TaggedObject.object_type == 'dataset')",
         secondaryjoin="and_(TaggedObject.tag_id == Tag.id, "
         "TaggedObject.object_type == 'chart')",
     )
